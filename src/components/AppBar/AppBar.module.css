@@ -1,0 +1,53 @@
+.header {
+position: relative;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 24px 0;
+
+}
+
+.logo { 
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo svg {
+  display: block;
+  width: 120px;
+  height: 40px;
+}
+
+
+.menu {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+
+}
+
+.menu li a {
+  font-size: 1rem;
+  text-decoration: none;
+  color:#101828;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.menu li a:hover {
+  color:#D84343;
+}
+
+.menu li a.active {
+  color: #D84343;
+  font-weight: 600;
+}
