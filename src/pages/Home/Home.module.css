@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   display: flex;
   align-items: center; /* ortalı kalsın */
   justify-content: flex-start;
@@ -57,4 +57,5 @@
 
 .btn:hover {
   background: #e63e3e;
+  color: #fff;
 }

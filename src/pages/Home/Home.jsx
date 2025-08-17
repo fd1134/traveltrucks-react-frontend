@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 
 export const Home = () => {
@@ -7,9 +8,9 @@ export const Home = () => {
       <div className={styles.heroContent}>
         <h1>Campers of your dreams</h1>
         <p>You can find everything you want in our catalog</p>
-        <a href="/catalog" className={styles.btn}>
-          View Now
-        </a>
+        <Link to="/catalog">
+          <span className={styles.btn}>View Now</span>
+        </Link>
       </div>
     </section>
   );
