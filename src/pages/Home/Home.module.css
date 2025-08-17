@@ -1,29 +1,37 @@
 .hero {
   position: relative;
-  height: 90vh;
-  background-size: cover;
-  background-position: center;
+  height: calc(100vh - 80px);
   display: flex;
-  align-items: center;
+  align-items: center; /* ortalı kalsın */
   justify-content: flex-start;
   color: white;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scaleX(-1);
+  z-index: 0;
 }
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 0; /* resmin üstünde ama yazının altında */
+  z-index: 1;
 }
 
 .heroContent {
   position: relative;
   max-width: 600px;
   padding: 2rem;
-  z-index: 1; /* overlay’in üstünde */
+  margin-top: 80px; /* yazıları biraz aşağı kaydırır */
+  z-index: 2;
 }
 
 .heroContent h1 {

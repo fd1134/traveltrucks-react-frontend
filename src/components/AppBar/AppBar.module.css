@@ -1,18 +1,23 @@
 .header {
-position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  z-index: 1000;
 }
 
 .nav {
+  position: relative;
   display: flex;
   align-items: center;
-  margin: 0 auto;
-  padding: 24px 0;
-
+  height: 80px; /* yükseklik sabit olsun */
+  padding: 0 40px;
 }
 
-.logo { 
+.logo {
   position: absolute;
-  left: 30px;
+  left: 40px; /* solda sabit */
   top: 50%;
   transform: translateY(-50%);
 }
@@ -23,28 +28,28 @@ position: relative;
   height: 40px;
 }
 
-
 .menu {
-  flex: 1; 
+  position: absolute;
+  top: 50%;
+  left: 50%;   /* tam ortaya */
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: center;
-  list-style: none;
   gap: 2rem;
+  list-style: none;
   margin: 0;
   padding: 0;
-
 }
 
 .menu li a {
   font-size: 1rem;
   text-decoration: none;
-  color:#101828;
+  color: #101828;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .menu li a:hover {
-  color:#D84343;
+  color: #D84343;
 }
 
 .menu li a.active {
