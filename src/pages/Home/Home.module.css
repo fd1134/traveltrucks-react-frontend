@@ -1,8 +1,8 @@
 .hero {
   position: relative;
-  height: calc(100vh - 60px);
+  height: 100vh;
   display: flex;
-  align-items: center; /* ortalı kalsın */
+  align-items: center;
   justify-content: flex-start;
   color: white;
   overflow: hidden;
@@ -19,10 +19,11 @@
   z-index: 0;
 }
 
-.overlay {
+.hero::after {
+  content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1); 
   z-index: 1;
 }
 
@@ -30,8 +31,8 @@
   position: relative;
   max-width: 600px;
   padding: 2rem;
-  margin-top: 80px; /* yazıları biraz aşağı kaydırır */
-  z-index: 2;
+  margin-top: 80px;
+  z-index: 2; 
 }
 
 .heroContent h1 {
@@ -42,20 +43,4 @@
 .heroContent p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  background: #ff4d4d;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background: #e63e3e;
-  color: #fff;
 }

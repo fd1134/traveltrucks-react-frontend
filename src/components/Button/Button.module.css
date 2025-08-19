@@ -1,0 +1,33 @@
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Filled button */
+.btn--filled {
+  background: #E44848;
+  color: #fff;
+  border: 2px solid #E44848;
+}
+
+.btn--filled:hover {
+  background: #D84343;
+  border-color: #D84343;
+}
+
+/* Outlined button */
+.btn--outlined {
+  background: transparent;
+  color: #101828;
+  border: 2px solid #DADDE1;
+}
+
+.btn--outlined:hover {
+  border-color: #D84343;
+
+}
