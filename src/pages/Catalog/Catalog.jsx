@@ -1,8 +1,18 @@
-export const Catalog = () => {
+import Sidebar from "../../components/Sidebar/Sidebar";
+
+import styles from "./Catalog.module.css";
+ const Catalog = () => {
   return (
-    <section>
-      <h2>Catalog</h2>
-      <p>Explore our collection of campers.</p>
+    <section className={styles.container}>
+     
+      <div className={styles.sidebar}>
+        <Sidebar />
+      </div>
+      <div className={styles.content}>
+       asddaa
+      </div>
+    
     </section>
   );
 };
+export default Catalog;

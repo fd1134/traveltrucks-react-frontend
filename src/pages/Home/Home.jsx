@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
-import { Button } from "../../components/Button/Button";
+import  Button  from "../../components/Button/Button";
 
-export const Home = () => {
+const Home = () => {
   return (
     <section className={styles.hero}>
       
@@ -18,3 +18,4 @@ export const Home = () => {
     </section>
   );
 };
+export default Home;

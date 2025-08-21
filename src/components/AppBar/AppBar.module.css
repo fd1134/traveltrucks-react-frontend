@@ -46,10 +46,10 @@
 }
 
 .menu li a:hover {
-  color: #D84343;
+  color:  var(--button-hover);
 }
 
 .menu li a.active {
-  color: #D84343;
+  color:  var(--button-hover);
   font-weight: 600;
 }

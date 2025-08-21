@@ -1,0 +1,13 @@
+.loadMore {
+  display: block;
+  margin: 24px auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+}
+
+.loadMore:hover {
+  background: #ddd;
+}

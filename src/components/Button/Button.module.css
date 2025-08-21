@@ -2,6 +2,8 @@
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
+  height: 56px;
+  width: 166px;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -16,8 +18,8 @@
 }
 
 .btn--filled:hover {
-  background: #D84343;
-  border-color: #D84343;
+  background:var(--button-hover);
+  border-color: var(--button-hover);
 }
 
 /* Outlined button */
@@ -28,6 +30,6 @@
 }
 
 .btn--outlined:hover {
-  border-color: #D84343;
+  border-color:  var(--button-hover);
 
 }

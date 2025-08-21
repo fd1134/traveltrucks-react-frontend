@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.svg?react";
 import styles from "./AppBar.module.css";
 
-export const AppBar = () => {
+ const AppBar = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -35,3 +35,4 @@ export const AppBar = () => {
     </header>
   );
 };
+export default AppBar;

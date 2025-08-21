@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import { Home } from '../../pages/Home/Home';
-import { Catalog } from '../../pages/Catalog/Catalog';
-import {Layout} from '../Layout/Layout'
+import  Home  from '../../pages/Home/Home';
+import  Catalog  from '../../pages/Catalog/Catalog';
+import  Layout from '../Layout/Layout'
 function App() {
 
 

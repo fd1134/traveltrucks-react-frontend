@@ -1,0 +1,26 @@
+.container {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.button {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #fdeaea;
+}
