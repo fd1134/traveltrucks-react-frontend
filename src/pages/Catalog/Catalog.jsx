@@ -1,4 +1,5 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
+import VehicleList from "../../components/VehicleList/VehicleList";
 
 import styles from "./Catalog.module.css";
  const Catalog = () => {
@@ -9,7 +10,7 @@ import styles from "./Catalog.module.css";
         <Sidebar />
       </div>
       <div className={styles.content}>
-       asddaa
+      <VehicleList />
       </div>
     
     </section>
