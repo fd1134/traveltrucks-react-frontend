@@ -1,0 +1,29 @@
+.catalog_Detail{
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog_Title{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--main)
+}
+
+.rating_wrapper{
+    display: flex;
+    gap:4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--main);
+    align-items: center;
+   
+}
+
+.reviews{
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 2px;
+    margin-right: 16px;
+}

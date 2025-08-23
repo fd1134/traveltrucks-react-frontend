@@ -1,4 +1,3 @@
-
 import VehicleCard from "../VehicleCard/VehicleCard";
 import styles from "./VehicleList.module.css";
 import pigImage from "../../assets/images/pic.png";
@@ -36,11 +35,10 @@ const VehicleList = () => {
         <VehicleCard key={vehicle.id} vehicle={vehicle} />
       ))}
       <Button variant="outlined" type="submit">
-             Load more
-            </Button>
-      
+        Load more
+      </Button>
     </div>
   );
-}
+};
 
 export default VehicleList;

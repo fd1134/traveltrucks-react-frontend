@@ -1,0 +1,8 @@
+.catalogDetail {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding: 32px;
+    background-color: var(--white);
+    margin-top: 120px;
+}
