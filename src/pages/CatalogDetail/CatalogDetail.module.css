@@ -1,6 +1,6 @@
 .catalogDetail {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 24px;
     padding: 32px;
     background-color: var(--white);

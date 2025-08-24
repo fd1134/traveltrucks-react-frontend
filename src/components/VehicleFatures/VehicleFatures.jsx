@@ -1,19 +1,8 @@
-
-import { Link } from "react-router-dom";
-
+import styles from "./VehicleFatures.module.css";
 import Features from "../Features/Features";
-import styles from "./VehicleCard.module.css";
-import icons from "../../assets/icons.svg";
-import Button from "../Button/Button";
-
-
-
-const VehicleCard = () => {
-  const handleToggleFavourite = () => {
-    // Logic to toggle favourite status
-  };
-  const isFavourite = false; // Replace with actual favourite status
-  const vehicle = 
+import ClientForm from "../ClientForm/ClientForm";
+const VehicleFatures=()=>{
+      const vehicle = 
     {
       "id": "6",
       "name": "Road Bear A 30-32",
@@ -111,53 +100,29 @@ const VehicleCard = () => {
       ]
     },
       ]
-    }
- 
-  return (
-   <div className={styles.item_wrapper}>
-      {vehicle.gallery?.[0]?.thumb && (
-        <img
-          className={styles.photo}
-          src={`${vehicle.gallery[0].thumb}`}
-          
-          alt={`${vehicle.name}`}
-        />
-      )}
-      <div className={styles.info_wrapper}>
-        <div className={styles.name_wrapper}>
-          <h2 className={styles.name_title}>{vehicle.name}</h2>
-          <div className={styles.favourite_wrapper}>
-            <span>{`€ ${Number(vehicle.price).toFixed(2)}`}</span>
-            <svg
-              width="26"
-              height="24"
-              onClick={handleToggleFavourite}
-              fill={isFavourite ? "#e44848" : "#101828"}
-              cursor='pointer'>
-              <use href={`${icons}#heard`} />
-            </svg>
+    };
+
+    return <>
+      <div className={styles.feature}>
+          <div className={styles.feature_wrapper}>
+              <Features vehicle={vehicle}/>
+              <h3 className={styles.equipment_title}>Vehicle details</h3>
+
+                  <div className={styles.truck_info}>
+                      <div className={styles.truck_category}><p>Form </p><p>{vehicle.form}</p></div>
+                      <div className={styles.truck_category}><p>Length</p><p>{vehicle.length}</p></div>
+                      <div className={styles.truck_category}><p>Width</p><p>{vehicle.width}</p></div>
+                      <div className={styles.truck_category}><p>Height</p><p>{vehicle.height}</p></div>
+                      <div className={styles.truck_category}><p>Tank</p><p>{vehicle.tank}</p></div>
+                      <div className={styles.truck_category}><p>Consumption</p><p> {vehicle.consumption}</p></div>
+                </div>
           </div>
-        </div>
-        <div className={styles.rating_wrapper}>
-          <svg width="16" height="16">
-            <use href={`${icons}#icon-Rating`} />
-          </svg>
-          <p className={styles.reviews}>{vehicle.rating} ({vehicle.reviews.length} Reviews)</p>
-          <svg width="20" height="20">
-            <use href={`${icons}#Map`} />
-          </svg> {vehicle.location}
-        </div>
-        <p className={styles.item_description}>{`${vehicle.description.substring(0, 60)}` + "..."}</p>
-        <Features vehicle={vehicle} />
-        <Link to={`/catalog/${vehicle.id}`}  >
-          
-           <Button variant="filled" type="submit">
-              Show mores
-            </Button>
-        </Link>
+
+          <ClientForm/>
       </div>
-    </div>
-  );
+
+    
+    </>
 }
 
-export default VehicleCard;
+export default VehicleFatures;
