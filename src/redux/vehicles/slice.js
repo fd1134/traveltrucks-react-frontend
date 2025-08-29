@@ -5,21 +5,23 @@ const vehiclesSlice = createSlice({
   name: "vehicles",
   initialState: {
     list: [],
-    status: "idle",
+    selected: null,
+    isLoading: false,
     error: null,
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchVehicles.pending, (state) => {
-        state.status = "loading";
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchVehicles.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.isLoading = false;
+        state.error = null;
         state.list = action.payload;
       })
       .addCase(fetchVehicles.rejected, (state, action) => {
-        state.status = "failed";
+        state.isLoading = false;
         state.error = action.error.message;
       });
   },

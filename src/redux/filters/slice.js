@@ -3,25 +3,28 @@ import { createSlice } from "@reduxjs/toolkit";
 const filtersSlice = createSlice({
   name: "filters",
   initialState: {
+    features: [],
+    form: "",
     location: "",
-    priceRange: [0, 20000],
-    rating: 0,
-    transmission: "all",
   },
   reducers: {
+    setForm: (state, action) => { state.form = action.payload; },
     setLocation: (state, action) => { state.location = action.payload; },
-    setPriceRange: (state, action) => { state.priceRange = action.payload; },
-    setRating: (state, action) => { state.rating = action.payload; },
-    setTransmission: (state, action) => { state.transmission = action.payload; },
+    toggleFeature: (state, action) => {
+      const feature = action.payload;
+      if (state.features.includes(feature)) {
+        state.features = state.features.filter(f => f !== feature);
+      } else {
+        state.features.push(feature);
+      }
+    },
     resetFilters: (state) => {
+      state.form = "";
       state.location = "";
-      state.priceRange = [0, 20000];
-      state.rating = 0;
-      state.transmission = "all";
+      state.features = [];
     },
   },
 });
-export const { setLocation, setPriceRange, setRating, setTransmission, resetFilters } =
-  filtersSlice.actions;
 
+export const { setForm, setLocation, toggleFeature, resetFilters } = filtersSlice.actions;
 export default filtersSlice.reducer;
