@@ -1,10 +1,12 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { selectFilters } from "../filters/filtersSelectors";
-import { selectFavourites } from "../favourites/favouritesSelectors";
+import { selectFilters } from "../filters/selectors";
+import { selectFavourites } from "../favourites/selectors";
+
 export const selectVehicles = (state) => state.vehicles.list;
 export const selectVehicle = (state) => state.vehicles.selected;
 export const selectVehiclesStatus = (state) => state.vehicles.isLoading;
 export const selectVehiclesError = (state) => state.vehicles.error;
+export const selectVehiclesTotal = (state) => state.vehicles.total;
 
 export const selectFilteredVehicles = createSelector(
   [selectVehicles, selectFilters],
@@ -23,12 +25,9 @@ export const selectFilteredVehicles = createSelector(
   }
 );
 
-// Filtre + favori araç kombinasyonu
 export const selectFavouriteVehicles = createSelector(
   [selectFilteredVehicles, selectFavourites],
   (filteredVehicles, favouriteIds) => {
     return filteredVehicles.filter((v) => favouriteIds.includes(v.id));
   }
 );
-
-

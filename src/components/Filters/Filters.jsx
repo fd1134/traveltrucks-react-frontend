@@ -1,22 +1,35 @@
 import { Field, Form, Formik,ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./Sidebar.module.css";
+import styles from "./Filters.module.css";
 import icons from "../../assets/icons.svg";
 import Button from "../Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { changeFilter } from "../../redux/filters/slice";
+import { selectFilters } from "../../redux/filters/selectors"
 
 const LocationSchema = Yup.object().shape({
   location: Yup.string(),
 });
-const Sidebar = () => {
+const Filters = () => {
+   const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
+
   return (
     <div className={styles.filter_wrapper}>
-      <Formik initialValues={{}}>
+      <Formik 
+        initialValues={{
+          location: filters.location,
+          form: filters.form,
+          features: filters.features, }}
+        validationSchema={LocationSchema}
+        onSubmit={values => {
+          dispatch(changeFilter(values));  
+              }}
+      >
         {({ errors, touched }) => (
           <Form className={styles.form} >
             <div className={styles.input_wrapper}>
-              <label className={styles.input_location_title} htmlFor="location">
-                Location
-              </label>
+              <label  className={styles.filter_title} htmlFor="location">Location</label>
               <Field
                 className={styles.input_location}
                 name="location"
@@ -26,22 +39,20 @@ const Sidebar = () => {
               <svg className={styles.icon} width="20" height="20">
                 <use href={`${icons}#Map`} />
               </svg>
-              <ErrorMessage name="location" component="span" className={styles.errorMessage} />
             </div>
-          
+            {errors.location ? (
+              <div className={styles.errorMessage}>{errors.location}</div>
+            ) : null}
+
 
             <p className={styles.filter_title}>Filters</p>
             <h3 className={styles.equipment_title}>Vehicle equipment</h3>
-            <div
-              role="group"
-              aria-labelledby="features-group"
-              className={styles.group_wrapper}
-            >
+            <div role="group" aria-labelledby="features-group" className={styles.group_wrapper}>
               <label>
                 <Field type="checkbox" name="features" value="AC" />
                 <p>
-                  <svg width="20" height="30">
-                    <use href={`${icons}#ac`} />
+                  <svg  width="20" height="30">
+                          <use href={`${icons}#ac`} />
                   </svg>
                   AC
                 </p>
@@ -49,8 +60,8 @@ const Sidebar = () => {
               <label>
                 <Field type="checkbox" name="features" value="automatic" />
                 <p>
-                  <svg width="20" height="30">
-                    <use href={`${icons}#diagram`} />
+                  <svg  width="20" height="30">
+                          <use href={`${icons}#diagram`} />
                   </svg>
                   Automatic
                 </p>
@@ -58,8 +69,8 @@ const Sidebar = () => {
               <label>
                 <Field type="checkbox" name="features" value="kitchen" />
                 <p>
-                  <svg width="20" height="30">
-                    <use href={`${icons}#cup-hot`} />
+                  <svg  width="20" height="30">
+                          <use href={`${icons}#cup-hot`} />
                   </svg>
                   Kitchen
                 </p>
@@ -67,34 +78,32 @@ const Sidebar = () => {
               <label>
                 <Field type="checkbox" name="features" value="TV" />
                 <p>
-                  <svg width="20" height="30">
-                    <use href={`${icons}#tv`} />
+                  <svg  width="20" height="30">
+                          <use href={`${icons}#tv`} />
                   </svg>
                   TV
                 </p>
               </label>
               <label>
                 <Field type="checkbox" name="features" value="bathroom" />
-                <p>
-                  <svg width="20" height="30">
-                    <use href={`${icons}#water`} />
-                  </svg>
-                  Bathroom
-                </p>
+                  <p>
+                    <svg width="20" height="30">
+                            <use href={`${icons}#water`} />
+                    </svg>
+                    Bathroom
+                  </p>
               </label>
-            </div>
+              
+          </div>
 
-            <h3 className={styles.equipment_title}>Vehicle type</h3>
-            <div
-              role="group"
-              aria-labelledby="form-group"
-              className={styles.group_wrapper}
-            >
+            
+         <h3 className={styles.equipment_title}>Vehicle type</h3>
+           <div role="group" aria-labelledby="form-group" className={styles.group_wrapper}>
               <label>
                 <Field type="radio" name="form" value="panelTruck" />
                 <p>
                   <svg width="32" height="32">
-                    <use href={`${icons}#van`} />
+                            <use href={`${icons}#van`} />
                   </svg>
                   Van
                 </p>
@@ -103,7 +112,7 @@ const Sidebar = () => {
                 <Field type="radio" name="form" value="fullyIntegrated" />
                 <p>
                   <svg width="32" height="32">
-                    <use href={`${icons}#full`} />
+                            <use href={`${icons}#full`} />
                   </svg>
                   Fully Integrated
                 </p>
@@ -112,7 +121,7 @@ const Sidebar = () => {
                 <Field type="radio" name="form" value="alcove" />
                 <p>
                   <svg width="32" height="32">
-                    <use href={`${icons}#alcove`} />
+                            <use href={`${icons}#alcove`} />
                   </svg>
                   Alcove
                 </p>
@@ -132,4 +141,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Filters;

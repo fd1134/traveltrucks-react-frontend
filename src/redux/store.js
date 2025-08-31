@@ -23,9 +23,9 @@ const filtersPersistConfig = {
 };
 
 
-import { filtersReducer } from './filters/slice';
-import { favouritesReducer } from './favourites/slice';
-import vehiclesReducer from "./vehicles/vehiclesSlice";
+import  filtersReducer  from './filters/slice';
+import  favouritesReducer  from './favourites/slice';
+import vehiclesReducer from "./vehicles/slice";
 
 
 
