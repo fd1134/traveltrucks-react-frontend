@@ -13,13 +13,18 @@ export const selectFilteredVehicles = createSelector(
   (vehicles, filters) => {
     return vehicles.filter((v) => {
       const matchesLocation = filters.location
-        ? v.location.includes(filters.location)
+        ? v.location.toLowerCase().includes(filters.location.toLowerCase())
         : true;
-      const matchesForm = filters.form ? v.form === filters.form : true;
+
+      const matchesForm = filters.form
+        ? v.form.toLowerCase() === filters.form.toLowerCase()
+        : true;
+
       const matchesFeatures =
         filters.features.length > 0
-          ? filters.features.every((f) => v[f])
+          ? filters.features.every((f) => v[f] === true)
           : true;
+
       return matchesLocation && matchesForm && matchesFeatures;
     });
   }

@@ -17,10 +17,11 @@ const vehiclesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchVehicles.fulfilled, (state, action) => {
+        console.log("FETCH FULFILLED PAYLOAD:", action.payload); // ✅ API’den gelen veri
         state.isLoading = false;
         state.error = null;
-        state.list = action.payload.items;  
-        state.total = action.payload.total; 
+        state.list = action.payload.items; // array olarak saklanıyor
+        state.total = action.payload.total;
       })
       .addCase(fetchVehicles.rejected, (state, action) => {
         state.isLoading = false;
