@@ -1,7 +1,7 @@
-import styles from "./VehicleFatures.module.css";
+import styles from "./VehicleFeatures.module.css";
 import Features from "../Features/Features";
 import ClientForm from "../ClientForm/ClientForm";
-const VehicleFatures=()=>{
+const VehicleFeatures=()=>{
       const vehicle = 
     {
       "id": "6",
@@ -125,4 +125,4 @@ const VehicleFatures=()=>{
     </>
 }
 
-export default VehicleFatures;
+export default VehicleFeatures;

@@ -3,51 +3,49 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchVehicles } from "../../redux/vehicles/operations";
 import Button from "../../components/Button/Button";
 
-import {
-  selectVehiclesStatus,
-  selectFilteredVehicles,
-} from "../../redux/vehicles/selectors";
+import { selectVehiclesStatus, selectVehicles } from "../../redux/vehicles/selectors";
 import Filters from "../../components/Filters/Filters";
 import VehicleList from "../../components/VehicleList/VehicleList";
 
 import styles from "./Catalog.module.css";
-
-const INITIAL_VISIBLE_COUNT = 4;
+import Loader from "../../components/Loader/Loader";
 
 const Catalog = () => {
   const dispatch = useDispatch();
-  const filteredVehicles = useSelector(selectFilteredVehicles);
+  const filteredVehicles = useSelector(selectVehicles);
   const loading = useSelector(selectVehiclesStatus);
 
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  // ✅ Sadece burada tanımla
+  const vehiclesToShow = Array.isArray(filteredVehicles) ? filteredVehicles : [];
 
   useEffect(() => {
     dispatch(fetchVehicles());
   }, [dispatch]);
 
   useEffect(() => {
-    setVisibleCount(INITIAL_VISIBLE_COUNT);
+    setVisibleCount(4);
   }, [filteredVehicles]);
 
-  const handleLoadMore = () =>
-    setVisibleCount((prev) => prev + INITIAL_VISIBLE_COUNT);
+  const onClickButton = () => {
+    setVisibleCount((prevCount) => prevCount + 4);
+  };
 
-  const canLoadMore = !loading && visibleCount < filteredVehicles.length;
-  console.log("Filtered Vehicles:", filteredVehicles);
   return (
     <section className={styles.container}>
       <div className={styles.sidebar}>
         <Filters />
       </div>
-
       <div className={styles.content}>
-        <VehicleList
-          vehicles={filteredVehicles.slice(0, visibleCount)}
-          loading={loading}
-        />
+        {loading && <Loader />}
 
-        {canLoadMore && (
-          <Button variant="outlined" type="button" onClick={handleLoadMore}>
+        <VehicleList vehicles={vehiclesToShow.slice(0, visibleCount)} />
+
+    
+
+        {!loading && visibleCount < vehiclesToShow.length && (
+          <Button variant="outlined" type="button" onClick={onClickButton}>
             Load more
           </Button>
         )}

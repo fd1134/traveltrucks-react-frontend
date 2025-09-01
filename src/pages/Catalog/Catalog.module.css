@@ -12,4 +12,13 @@
 }
 .content{
     flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+.error{
+    color: red;
+    font-size: 14px;
 }
