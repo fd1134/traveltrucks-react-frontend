@@ -6,25 +6,38 @@ export const fetchVehicles = createAsyncThunk(
   "vehicles/fetchVehicles",
   async (filters = {}, thunkAPI) => {
     try {
-      
       thunkAPI.dispatch(clearVehicles());
 
       const params = {};
       if (filters.location) params.location = filters.location;
       if (filters.form) params.form = filters.form;
+
       if (filters.features?.length) {
         filters.features.forEach((f) => {
-          params[f] = true;
+          if (f !== "automatic") {
+            params[f] = true;
+          }
         });
       }
 
+      if (filters.transmission) {
+        params.transmission = filters.transmission;
+      }
+
       const response = await instance.get("/campers", { params });
+
       return {
-        items: response.data,     
-        total: response.data.length,
+        items: response.data.items,
+        total: response.data.total,
       };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      // Axios error kontrolü
+      if (error.response) {
+        // API'den dönen hata (örn. 404)
+        return thunkAPI.rejectWithValue(error.response.data?.message || "Not found");
+      }
+      // Diğer hatalar (network vs.)
+      return thunkAPI.rejectWithValue("Something went wrong");
     }
   }
 );

@@ -8,11 +8,11 @@ import { changeFilter } from "../../redux/filters/slice";
 import { selectFilters } from "../../redux/filters/selectors";
 import { fetchVehicles } from "../../redux/vehicles/operations";
 
-// Validation schema
 const LocationSchema = Yup.object().shape({
-  location: Yup.string().optional(), // opsiyonel, zorunlu yapmak için .required("Location required") eklenebilir
+  location: Yup.string().optional(),
   form: Yup.string().optional(),
   features: Yup.array().of(Yup.string()),
+  transmission: Yup.string().optional(),
 });
 
 const Filters = () => {
@@ -23,31 +23,24 @@ const Filters = () => {
     location: filters.location || "",
     form: filters.form || "",
     features: filters.features || [],
-    transmission: filters.transmission || "manuel", // Başlangıçta manuel olarak ayarla
+    transmission: filters.transmission || "manual",
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
     dispatch(changeFilter(values));
     dispatch(fetchVehicles(values)).finally(() => setSubmitting(false));
+    
   };
 
   const handleFeatureChange = (e, setFieldValue, values) => {
     const { value, checked } = e.target;
 
-    // Güncellenmiş features array'ini oluştur
+  
     const updatedFeatures = checked
       ? [...values.features, value]
       : values.features.filter((feature) => feature !== value);
 
-    // Features değerini güncelle
     setFieldValue("features", updatedFeatures);
-
-    // Eğer 'automatic' seçildiyse transmission'ı automatic yap
-    if (value === "automatic") {
-      setFieldValue("transmission", "automatic");
-    } else if (!updatedFeatures.includes("automatic")) {
-      setFieldValue("transmission", "manuel");
-    }
   };
 
   return (
@@ -89,12 +82,14 @@ const Filters = () => {
               aria-labelledby="features-group"
               className={styles.group_wrapper}
             >
-              {["AC", "automatic", "kitchen", "TV", "bathroom"].map((feature) => (
+              {/* Diğer özellikler */}
+              {["AC", "kitchen", "TV", "bathroom"].map((feature) => (
                 <label key={feature}>
                   <Field
                     type="checkbox"
                     name="features"
                     value={feature}
+                    checked={values.features.includes(feature)}
                     onChange={(e) => handleFeatureChange(e, setFieldValue, values)}
                   />
                   <p>
@@ -105,6 +100,26 @@ const Filters = () => {
                   </p>
                 </label>
               ))}
+
+              {/* Automatic checkbox */}
+              <label key="automatic">
+                <input
+                  type="checkbox"
+                  checked={values.transmission === "automatic"}
+                  onChange={(e) =>
+                    setFieldValue(
+                      "transmission",
+                      e.target.checked ? "automatic" : "manual"
+                    )
+                  }
+                />
+                <p>
+                  <svg width="20" height="30">
+                    <use href={`${icons}#automatic`} />
+                  </svg>
+                  Automatic
+                </p>
+              </label>
             </div>
 
             {/* Vehicle type */}
