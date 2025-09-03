@@ -31,13 +31,25 @@ export const fetchVehicles = createAsyncThunk(
         total: response.data.total,
       };
     } catch (error) {
-      // Axios error kontrolü
+      
       if (error.response) {
-        // API'den dönen hata (örn. 404)
+       
         return thunkAPI.rejectWithValue(error.response.data?.message || "Not found");
       }
-      // Diğer hatalar (network vs.)
+     
       return thunkAPI.rejectWithValue("Something went wrong");
+    }
+  }
+);
+export const fetchVehicleDetails = createAsyncThunk(
+  'vehicles/fetchById',
+    async (id, thunkApi) => {
+    try {
+      const response = await instance.get(`/campers/${id}`);
+       
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
