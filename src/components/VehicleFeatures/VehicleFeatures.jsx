@@ -1,4 +1,5 @@
 import { useSelector} from "react-redux";
+import { Toaster } from "react-hot-toast";
 import { selectVehicle} from "../../redux/vehicles/selectors";
 import styles from "./VehicleFeatures.module.css";
 import Features from "../Features/Features";
@@ -26,6 +27,7 @@ const VehicleFeatures=()=>{
           </div>
 
           <ClientForm/>
+           <Toaster position="top-right" reverseOrder={false} />
       </div>
 
     

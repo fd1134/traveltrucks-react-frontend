@@ -1,5 +1,6 @@
 
 import { useSelector} from "react-redux";
+import { Toaster } from "react-hot-toast";
 import { selectVehicle} from "../../redux/vehicles/selectors";
 import ClientForm from '../ClientForm/ClientForm'
 import styles from './VehicleReviews.module.css'
@@ -37,6 +38,7 @@ const VehicleReviews = () => {
         ))}
       </ul>
           <ClientForm/>
+           <Toaster position="top-right" reverseOrder={false} />
     </div>
   )
 }
