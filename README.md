@@ -65,7 +65,6 @@ The project uses modern Redux Toolkit with three main slices:
 
 ### API Integration
 
-- All API requests are separated into a service layer (`src/services/api.js`)
 - Uses axios for HTTP requests
 - Implements error handling and loading states
 - Supports filtering and pagination
