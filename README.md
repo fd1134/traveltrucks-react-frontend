@@ -79,7 +79,7 @@ The project uses modern Redux Toolkit with three main slices:
 
 - React Router v6 with nested routes support
 - Lazy loading for pages optimization
-- SPA support in production (vercel.json)
+
 
 ## 🌐 API
 
